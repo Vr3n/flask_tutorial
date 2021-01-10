@@ -1,15 +1,30 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
+
+posts = [
+    {
+    'author': "Viren Patel",
+    "title": "Blog Post 1",
+    'content': 'First post content',
+    'date_posted': "Jan 10, 2021"
+    },
+    {
+    'author': "Manav Shah",
+    "title": "Blog Post 2",
+    'content': 'Second post content',
+    'date_posted': "Jan 10, 2021"
+    }
+]
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return "<h1>Hello Friend!</h1>"
+    return render_template('home.html', posts=posts)
 
 @app.route('/about')
 def about():
-    return "<h1>Say Something About you </h1>"
+    return render_template('about.html', title="Blog | About")
 
 
 if __name__ == "__main__":
